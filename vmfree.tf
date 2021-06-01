@@ -15,6 +15,9 @@ variable "compartment_ocid" {
 variable "region" {
 }
 
+variable "shape" {
+
+}
 provider "oci" {
   region           = var.region
   tenancy_ocid     = var.tenancy_ocid
@@ -140,7 +143,7 @@ resource "oci_core_instance" "free_instance0" {
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_ocid
   display_name        = var.nombre_instancia
-  shape               = "VM.Standard2.1" 
+  shape               = var.shape
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.test_subnet.id
